@@ -5,14 +5,14 @@ public interface Stack {
 	public default void pop() {
 	}
 
-	public default void peek() {
+	public default Object top() {
+		return null;
 	}
 
-	public default boolean empty() {
+	public default boolean isEmpty() {
 		return false;
 	}
-
-	public default int search() {
-		return 0;
+	
+	public default void empty() {
 	}
 }

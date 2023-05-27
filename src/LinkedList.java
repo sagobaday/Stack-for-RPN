@@ -1,25 +1,29 @@
 public class LinkedList {
-	private Node head, curr, prev;
+	private Node head, curr;
 	
 	public LinkedList() {
 		  curr = null;
 		  head = null;
-		  prev = null;
 		}
 	
 	public void add(Object o) {
 		if (head == null) {
-			head = new Node(o, null);
+			head = new Node(o, null, null);
 			curr = head;
-			prev = null;
 		} else {
-			curr.setNext(new Node(o, null));
-			prev = curr;
+			curr.setNext(new Node(o, null, curr));
 			curr = curr.getNext();
 		}
 	}
 	
-	public void remove(Object o) {
-		
+	public void removeLast(Object o) {
+		if (head != null) {
+			curr = curr.getPrev();
+			curr.setNext(null);
+		}
+	}
+	
+	public Node getLast() {
+		return curr;
 	}
 }

@@ -1,5 +1,5 @@
 public class StackAsList implements Stack {
-	
+	LinkedList list = new LinkedList();
 	
     @Override
     public void push(Object e) {
@@ -12,17 +12,17 @@ public class StackAsList implements Stack {
     }
 
     @Override
-    public void peek() {
-
+    public Object top() {
+        return list.getLast();
+    }
+    
+    @Override
+    public boolean isEmpty() {
+    	return (list.getLast() == null);
     }
 
     @Override
-    public boolean empty() {
-        return false;
-    }
+    public void empty() {
 
-    @Override
-    public int search() {
-        return 0;
     }
 }
