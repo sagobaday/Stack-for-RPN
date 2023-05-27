@@ -1,5 +1,5 @@
 public interface Stack {
-
+	
 	// Pushes an item onto the top of this stack.
 	public default void push(Object e) {
 	}
@@ -9,16 +9,16 @@ public interface Stack {
 	}
 
 	// Looks at the object at the top of this stack without removing it from the stack.
-	public default void peek() {
+	public default Object top() {
+		return null;
 	}
 
 	// Tests if this stack is empty.
-	public default boolean empty() {
+	public default boolean isEmpty() {
 		return false;
 	}
-
-	// Returns the 1-based position where an object is on this stack.
-	public default int search() {
-		return 0;
+	
+	// ...
+	public default void empty() {
 	}
 }
