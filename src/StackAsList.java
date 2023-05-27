@@ -2,18 +2,24 @@ public class StackAsList implements Stack {
 	LinkedList list = new LinkedList();
 	
     @Override
-    public void push(Object e) {
-
+    public void push(Object o) {
+    	list.add(o);
     }
 
     @Override
-    public void pop() {
-
+    public void pop() throws Exception {
+    	if (!isEmpty()) {
+    		list.removeLast();
+    	}
+    	else
+    		throw new Exception();
     }
 
     @Override
     public Object top() {
         return list.getLast();
+        
+        
     }
     
     @Override
@@ -23,6 +29,6 @@ public class StackAsList implements Stack {
 
     @Override
     public void empty() {
-
+    	list.clear();
     }
 }
