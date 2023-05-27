@@ -1,5 +1,6 @@
 public class StackAsList implements Stack {
-
+	
+	
     @Override
     public void push(Object e) {
 
