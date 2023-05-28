@@ -57,17 +57,21 @@ public class LinkedList {
 	}
 	
 	public Object[] toArray() {
-		Object[] objects = new Object[size];
-		objects[0] = head.getData();
-		int i = 1;
-		Node arrayCurr = head.getNext();
-		
-		while(arrayCurr != null) {
-			objects[i] = arrayCurr.getData();
-			arrayCurr = arrayCurr.getNext();
-			i++;
+		if (head != null) {
+			Object[] objects = new Object[size];
+			objects[0] = head.getData();
+			int i = 1;
+			Node arrayCurr = head.getNext();
+			
+			while(arrayCurr != null) {
+				objects[i] = arrayCurr.getData();
+				arrayCurr = arrayCurr.getNext();
+				i++;
+			}
+			
+			return objects;
 		}
 		
-		return objects;
+		return null;
 	}
 }

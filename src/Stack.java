@@ -5,7 +5,7 @@ public interface Stack {
 	}
 
 	// Removes the object at the top of this stack and returns that object as the value of this function.
-	public default void pop() throws Exception {
+	public default void pop() throws StackUnderflowException {
 	}
 
 	// Looks at the object at the top of this stack without removing it from the stack.

@@ -7,12 +7,12 @@ public class StackAsList implements Stack {
     }
 
     @Override
-    public void pop() throws Exception {
+    public void pop() throws StackUnderflowException {
     	if (!isEmpty()) {
     		list.removeLast();
     	}
     	else
-    		throw new Exception();
+    		throw new StackUnderflowException();
     }
 
     @Override
@@ -32,16 +32,19 @@ public class StackAsList implements Stack {
     
     @Override
     public String toString() {
-    	Object[] listArray = list.toArray();
-    	String str = "";
-    	
-    	for (int i = 0; i < listArray.length; i++) {
-    		if (i == listArray.length  - 1)
-    			str += listArray[i];
-    		else
-    			str += listArray[i] + ", ";
-    	}
-    	
-    	return str;
+    	if (list.toArray() != null) {
+    		Object[] listArray = list.toArray();
+        	String str = "";
+        	
+        	for (int i = 0; i < listArray.length; i++) {
+        		if (i == listArray.length  - 1)
+        			str += listArray[i];
+        		else
+        			str += listArray[i] + ", ";
+        	}
+        	
+        	return str;
+    	} else
+    		return "Stack is empty.";
     }
 }
