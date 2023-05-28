@@ -18,8 +18,6 @@ public class StackAsList implements Stack {
     @Override
     public Object top() {
         return list.getLast();
-        
-        
     }
     
     @Override
@@ -30,5 +28,20 @@ public class StackAsList implements Stack {
     @Override
     public void empty() {
     	list.clear();
+    }
+    
+    @Override
+    public String toString() {
+    	Object[] listArray = list.toArray();
+    	String str = "";
+    	
+    	for (int i = 0; i < listArray.length; i++) {
+    		if (i == listArray.length  - 1)
+    			str += listArray[i];
+    		else
+    			str += listArray[i] + ", ";
+    	}
+    	
+    	return str;
     }
 }

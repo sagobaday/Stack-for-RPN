@@ -1,9 +1,11 @@
 public class LinkedList {
 	private Node head, curr;
+	private int size;
 	
 	public LinkedList() {
 		  curr = null;
 		  head = null;
+		  size = 0;
 		}
 	
 	public void add(Object o) {
@@ -14,6 +16,8 @@ public class LinkedList {
 			curr.setNext(new Node(o, null, curr));
 			curr = curr.getNext();
 		}
+		
+		size++;
 	}
 	
 	/*public void removeLast() {
@@ -35,6 +39,8 @@ public class LinkedList {
                 head = null;
                 curr = null;
             }
+            
+            size--;
         }
     }
 	
@@ -48,5 +54,20 @@ public class LinkedList {
 	public void clear() {
 		head = null;
 		curr = null;
+	}
+	
+	public Object[] toArray() {
+		Object[] objects = new Object[size];
+		objects[0] = head.getData();
+		int i = 1;
+		Node arrayCurr = head.getNext();
+		
+		while(arrayCurr != null) {
+			objects[i] = arrayCurr.getData();
+			arrayCurr = arrayCurr.getNext();
+			i++;
+		}
+		
+		return objects;
 	}
 }

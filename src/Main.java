@@ -5,11 +5,7 @@ public class Main {
 		stack.push("1");
 		stack.push("2");
 		stack.push("3");
-		stack.pop();
-		stack.pop();
-		stack.pop();
-		stack.pop();
 		//stack.empty();
-		System.out.println(stack.isEmpty());
+		System.out.println(stack);
 	}
 }

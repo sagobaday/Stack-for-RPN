@@ -21,4 +21,7 @@ public interface Stack {
 	// ...
 	public default void empty() {
 	}
+	
+	// ...
+	public String toString();
 }
