@@ -19,17 +19,7 @@ public class LinkedList {
 		
 		size++;
 	}
-	
-//	public void removeLast() {
-//		curr = curr.getPrev();
-//		
-//		if (curr == null) {
-//			head = new Node(null, null, null);
-//			curr = head;
-//		}
-//			curr.setNext(null);
-//	}
-	
+		
 	public void removeLast() {
         if (head != null) {
             if (curr.getPrev() != null) {

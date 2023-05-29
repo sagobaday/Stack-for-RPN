@@ -1,19 +1,8 @@
 public class Postfix {
-
-	static int precedence(Character ch) {
-
-		return switch (ch) {
-			case '+', '-' -> 1;
-			case '*', '/' -> 2;
-			case '^' -> 3;
-			default -> -1;
-		};
-	}
 	public double evaluate (String pfx) throws StackUnderflowException {
 		pfx = pfx.replaceAll("\\s", "");
 		char[] pfxArray = pfx.toCharArray();
 		Stack pfxStack = new StackAsList();
-		//Stack operators = new StackAsList();
 		Stack operands = new StackAsList();
 
 		for (int i = pfxArray.length - 1; i >= 0; i--)
@@ -54,7 +43,20 @@ public class Postfix {
 		return (double) operands.top();
 
 	}
-
+	
+	static int precedence(Character ch) {
+		return switch (ch) {
+			case '+', '-' -> 1;
+			case '*', '/' -> 2;
+			case '^' -> 3;
+			default -> -1;
+		};
+	}
+	
+	private boolean isOperator(char ch) {
+		return ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '^';
+	}
+	
 	public String infixToPostfix(String ifx) throws IllegalArgumentException, StackUnderflowException {
 		if (ifx == null || ifx.isEmpty()) {
 			return ifx;
@@ -71,8 +73,9 @@ public class Postfix {
 				pfxExpression.append(ch);
 			} else if (isOperator(ch)) {
 				// Pop operators with higher precedence from the stack and append them to the postfix expression
-				while (!operatorStack.isEmpty() && precedence(ch) <= precedence((Character) operatorStack.peek())) {
-					pfxExpression.append(operatorStack.pop());
+				while (!operatorStack.isEmpty() && precedence(ch) <= precedence((Character) operatorStack.top())) {
+					pfxExpression.append(operatorStack.top());
+					operatorStack.pop();
 				}
 				// Push the current operator onto the stack
 				operatorStack.push(ch);
@@ -81,11 +84,12 @@ public class Postfix {
 				operatorStack.push(ch);
 			} else if (ch == ')') {
 				// Pop operators from the stack and append them to the postfix expression until a matching opening parenthesis is found
-				while (!operatorStack.isEmpty() && !operatorStack.peek().equals('(')) {
-					pfxExpression.append(operatorStack.pop());
+				while (!operatorStack.isEmpty() && !operatorStack.top().equals('(')) {
+					pfxExpression.append(operatorStack.top());
+					operatorStack.pop();
 				}
 
-				if (operatorStack.isEmpty() || !operatorStack.peek().equals('(')) {
+				if (operatorStack.isEmpty() || !operatorStack.top().equals('(')) {
 					throw new IllegalArgumentException("Invalid infix expression: Unbalanced parentheses");
 				}
 
@@ -98,7 +102,8 @@ public class Postfix {
 
 		// Pop any remaining operators from the stack and append them to the postfix expression
 		while (!operatorStack.isEmpty()) {
-			char operator = (char) operatorStack.pop();
+			char operator = (char) operatorStack.top();
+			operatorStack.pop();
 
 			if (operator == '(') {
 				throw new IllegalArgumentException("Invalid infix expression: Unbalanced parentheses");
@@ -108,11 +113,5 @@ public class Postfix {
 		}
 
 		return pfxExpression.toString();
-	}
-
-
-
-	private boolean isOperator(char ch) {
-		return ch == '+' || ch == '-' || ch == '*' || ch == '/';
 	}
 }
