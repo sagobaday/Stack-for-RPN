@@ -7,13 +7,14 @@ public class StackAsList implements Stack {
     }
 
     @Override
-    public void pop() throws StackUnderflowException {
+    public Object pop() throws StackUnderflowException {
     	if (!isEmpty()) {
     		list.removeLast();
     	}
     	else
     		throw new StackUnderflowException();
-    }
+		return null;
+	}
 
     @Override
     public Object top() {
@@ -29,8 +30,17 @@ public class StackAsList implements Stack {
     public void empty() {
     	list.clear();
     }
-    
-    @Override
+
+	@Override
+	public Object peek() throws StackUnderflowException {
+		if (isEmpty()) {
+			throw new StackUnderflowException("Stack is empty");
+		}
+		return list.getLast();
+	}
+
+
+	@Override
     public String toString() {
     	if (list.toArray() != null) {
     		Object[] listArray = list.toArray();
